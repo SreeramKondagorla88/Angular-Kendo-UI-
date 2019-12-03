@@ -1,0 +1,12 @@
+<kendo-scheduler
+            [kendoSchedulerBinding]="editService.events | async"
+            [kendoSchedulerReactiveEditing]="createFormGroup"
+            [editService]="editService"
+            [modelFields]="editService.fields"
+            [loading]="editService.loading"
+            [selectedDate]="selectedDate"
+            style="height: 600px;"
+        >
+            <kendo-scheduler-week-view startTime="07:00">
+            </kendo-scheduler-week-view>
+        </kendo-scheduler>

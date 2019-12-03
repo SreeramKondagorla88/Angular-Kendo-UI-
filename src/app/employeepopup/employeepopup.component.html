@@ -1,0 +1,37 @@
+<!-- <div class="alert alert danger">
+    <p>
+        {{}}
+    </p>
+</div> -->
+<kendo-grid
+[kendoGridBinding]="employeeData"
+[height]="533"
+[pageSize]="gridState.take" [skip]="gridState.skip" [sort]="gridState.sort"
+[pageable]="true" [sortable]="true"
+(dataStateChange)="onStateChange($event)"
+(dataStateChange)="onStateChange($event)"
+(edit)="editHandler($event)" (cancel)="cancelHandler($event)"
+(save)="saveHandler($event)" (remove)="removeHandler($event)"
+[navigable]="true"
+>
+<kendo-grid-column field = "id" title="ID"  [editable]="false"></kendo-grid-column>
+<kendo-grid-column field = "employee_name" title="Name"></kendo-grid-column>
+<kendo-grid-column field = "employee_salary" title="Salary"  [editable]="false"></kendo-grid-column>
+<kendo-grid-column field = "employee_age" title="Age"  [editable]="false"> </kendo-grid-column>
+<kendo-grid-command-column title="command" width="220">
+    <ng-template kendoGridCellTemplate>
+        <button kendoGridEditCommand [primary]="true">Edit</button>
+        <button kendoGridRemoveCommand>Delete</button>
+    </ng-template>
+</kendo-grid-command-column>
+</kendo-grid>
+
+
+<kendo-grid-edit-form [model]="editDataItem" [isNew]="isNew"
+(save)="saveHandler($event)"
+(cancel)="cancelHandler()">
+</kendo-grid-edit-form>
+
+
+<div *ngIf="loading" class="k-i-loading"></div>
+

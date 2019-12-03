@@ -1,0 +1,39 @@
+<ng-content></ng-content>
+<div *ngIf="errorMessage" class="alert alert-danger">
+    <p>
+        {{errorMessage}}
+    </p>
+</div>
+
+<kendo-grid 
+[kendoGridBinding] = "employeeData"
+[pageSize]="gridState.take" [skip]="gridState.skip" [sort]="gridState.sort"
+[pageSize]="20"
+[pageable]="true"
+[sortable]="true"
+[groupable]="true"
+[reorderable]="true"
+[resizable]="true"
+[height]="480"
+[navigable]="true"
+[columnMenu]="{ filter: true }"
+(remove)="removeHandler($event)"
+(dataStateChange)="onStateChange($event)"
+(cellClick)="cellClickHandler($event)"
+(cellClose)="cellCloseHandler($event)"
+>
+<kendo-grid-column field = "id" title="ID" ></kendo-grid-column>
+<kendo-grid-column field = "employee_name" title="Name"></kendo-grid-column>
+<kendo-grid-column field = "employee_salary" title="Salary"></kendo-grid-column>
+<kendo-grid-column field = "employee_age" title="Age"  class="k-grid-ignore-click" > </kendo-grid-column>
+<kendo-grid-command-column title="command" width="220">
+    <ng-template kendoGridCellTemplate let-isNew="isNew">
+        <button kendoGridRemoveCommand>Remove</button>
+        
+    </ng-template>
+</kendo-grid-command-column>
+
+</kendo-grid>
+
+<div *ngIf="loading" class="k-i-loading"></div>
+

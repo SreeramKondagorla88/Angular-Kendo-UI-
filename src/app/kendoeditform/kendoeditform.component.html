@@ -1,0 +1,43 @@
+<kendo-dialog *ngIf="active" [width]="300" [height]="450" (close)="closeForm()">
+    <kendo-dialog-titlebar>
+      {{ isNew ? 'Add new product' : 'Edit product' }}
+    </kendo-dialog-titlebar>
+
+      <form novalidate [formGroup]="editForm">
+          <div class="form-group">
+              <label for="ProductName" class="control-label">Name</label>
+
+              <input type="text" class="k-textbox" formControlName="employee_name" />
+
+              <div
+                  class="k-tooltip k-tooltip-validation"
+                  [style.visibility]=
+                      "editForm.controls.employee_name.valid || editForm.controls.employee_name.pristine ? 'hidden':'visible'">
+                  ProductName is required
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="UnitPrice" class="control-label">Salary</label>
+
+              <input type="text" class="k-textbox" formControlName="employee_salary" />
+          </div>
+          <div class="form-group">
+              <label for="UnitsInStock" class="control-label">Age</label>
+
+              <input type="text" class="k-textbox" formControlName="employee_age" />
+
+              <div
+                  class="k-tooltip k-tooltip-validation"
+                  [style.visibility]=
+                      "editForm.controls.employee_age.valid || editForm.controls.employee_age.pristine ? 'hidden':'visible'">
+                  Units must be between 0 and 99
+              </div>
+          </div>
+         
+      </form>
+
+      <kendo-dialog-actions>
+          <button class="k-button" (click)="onCancel($event)">Cancel</button>
+          <button class="k-button k-primary" [disabled]="!editForm.valid" (click)="onSave($event)">Save</button>
+      </kendo-dialog-actions>
+  </kendo-dialog>

@@ -1,8 +1,42 @@
+// import { AppComponent } from './app.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { EmployeesComponent } from './employees/employees.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { EmployeeEditButtonComponent } from './employee-edit-button/employee-edit-button.component';
+// import { SchedulerComponent } from './scheduler/scheduler.component';
+import { SchedulerdatabindingComponent } from './schedulerdatabinding/schedulerdatabinding.component';
+import { EmployeepopupComponent } from './employeepopup/employeepopup.component';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path:'',
+    redirectTo:'/employee',
+    pathMatch:'full'
+  },
+  {
+    path:'employeeB',
+    component:EmployeeEditButtonComponent,
+    
+  },
+  {
+    path :"employee",
+    component : EmployeesComponent
+  }, 
+  {
+    path : 'scheduler',
+    component : SchedulerdatabindingComponent
+  },
+  {
+    path : 'employeeP',
+    component: EmployeepopupComponent
+  },
+  {
+    path:"**",
+    component:PageNotFoundComponent
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
