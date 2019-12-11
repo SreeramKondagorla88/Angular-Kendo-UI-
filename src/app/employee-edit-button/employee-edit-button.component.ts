@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from '../employee';
+import { Employee } from '../employee.interface';
 import { State } from '@progress/kendo-data-query';
 import { ApirequestService } from '../apirequest.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

@@ -3,7 +3,7 @@
 
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
-import { Employee } from '../employee';
+import { Employee } from '../employee.interface';
 @Component({
   selector: 'kendo-grid-edit-form',
   templateUrl: './kendoeditform.component.html',
@@ -34,6 +34,7 @@ export class KendoeditformComponent {
     @Output() save: EventEmitter<Employee> = new EventEmitter();
 
     public onSave(e): void {
+      alert("hello")
         e.preventDefault();
         this.save.emit(this.editForm.value);
         this.active = false;

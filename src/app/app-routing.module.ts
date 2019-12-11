@@ -7,6 +7,8 @@ import { EmployeeEditButtonComponent } from './employee-edit-button/employee-edi
 // import { SchedulerComponent } from './scheduler/scheduler.component';
 import { SchedulerdatabindingComponent } from './schedulerdatabinding/schedulerdatabinding.component';
 import { EmployeepopupComponent } from './employeepopup/employeepopup.component';
+import { EmployeeDetailsDownComponent } from './employee-details-down/employee-details-down.component';
+import { MasterDetailsGridComponent } from './master-details-grid/master-details-grid.component';
 
 
 const routes: Routes = [
@@ -31,6 +33,14 @@ const routes: Routes = [
   {
     path : 'employeeP',
     component: EmployeepopupComponent
+  },
+  {
+    path : 'employeeD',
+    component : EmployeeDetailsDownComponent
+  },
+  {
+    path : 'masterDetails',
+    component : MasterDetailsGridComponent
   },
   {
     path:"**",

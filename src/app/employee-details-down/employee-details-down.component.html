@@ -14,27 +14,32 @@
 (save)="saveHandler($event)" (remove)="removeHandler($event)"
 [navigable]="true"
 >
-<ng-template kendoGridToolbarTemplate>
-    <button (click)="addHandler()">Add new</button>
-</ng-template>
 <kendo-grid-column field = "id" title="ID"  [editable]="false"></kendo-grid-column>
 <kendo-grid-column field = "employee_name" title="Name"></kendo-grid-column>
 <kendo-grid-column field = "employee_salary" title="Salary"  [editable]="false"></kendo-grid-column>
 <kendo-grid-column field = "employee_age" title="Age"  [editable]="false"> </kendo-grid-column>
 <kendo-grid-command-column title="command" width="220">
-    <ng-template kendoGridCellTemplate>
-        <button kendoGridEditCommand [primary]="true">Edit</button>
-        <button kendoGridRemoveCommand>Delete</button>
+    <ng-template kendoGridCellTemplate let-isNew="isNew">
+        <button kendoGridRemoveCommand>Remove</button>
+        <!-- <button kendoGridEditCommand [primary]="true">Edit</button> -->
+        <button kendoGridSaveCommand [disabled]="formGroup?.invalid">{{ isNew ? 'Add' : 'Update' }}</button>
+        <button kendoGridCancelCommand>{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
     </ng-template>
 </kendo-grid-command-column>
+<ng-template kendoGridDetailTemplate let-dataItem>
+   
+    <form [formGroup]="editForm"  (ngSubmit)="saveHandler()">
+            <input type="text" value="{{dataItem.id}}" formControlName="id" >
+            <strong>Name: </strong>
+             <input type="text" value="{{dataItem.UnitsOnOrder}}" formControlName="units">
+      
+            <button type="submit" [disabled]="!editForm.valid"  >Submit</button>
+          
+                  
+    </form>
+      
+  
+  </ng-template>
 </kendo-grid>
-
-
-<kendo-grid-edit-form [model]="editDataItem" [isNew]="isNew"
-(save)="saveHandler($event)"
-(cancel)="cancelHandler()">
-</kendo-grid-edit-form>
-
-
 <div *ngIf="loading" class="k-i-loading"></div>
 

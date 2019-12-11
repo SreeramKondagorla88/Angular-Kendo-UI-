@@ -1,14 +1,18 @@
-import { Employee } from './../employee';
+import { Employee } from '../employee.interface';
 import { ApirequestService } from './../apirequest.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { State } from '@progress/kendo-data-query';
+import { PDFModule } from '@progress/kendo-angular-scheduler';
+import { ExcelExportData } from '@progress/kendo-angular-excel-export';
+import { Observable } from 'rxjs';
 
 // import { DialogTemplateComponent } from '../dialog-template/dialog-template.component';
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
-  styleUrls: ['./employees.component.scss']
+  encapsulation: ViewEncapsulation.None,
+    styleUrls: ['./employees.component.scss']
 })
 export class EmployeesComponent implements OnInit {
   employeeData :Employee;
@@ -21,7 +25,9 @@ export class EmployeesComponent implements OnInit {
 };
   constructor(private employee:ApirequestService,
     private formBuilder: FormBuilder,
-    ) { }
+    ) { 
+      // this.alldata = this.alldata.bind(this);
+    }
   loading :boolean = true;
   ngOnInit() {
     this.loading = true
@@ -62,6 +68,7 @@ public cellCloseHandler(args: any) {
         
     }
 }
+
 public createFormGroup(dataItem: any): FormGroup {
   return this.formBuilder.group({
       'id': dataItem.id,
@@ -96,29 +103,10 @@ public close(status) {
   console.log(`Dialog result: ${status}`);
   this.opened = false;
 }
-
-// public openDialog() {
-  
-//   return new Promise((resolve,reject)=>{
-//     const dialogConfig = new MatDialogConfig();
-
-//     // dialogConfig.disableClose = true;
-//     dialogConfig.autoFocus = true;
-//     dialogConfig.data = {
-//         title: "Hello",
-//         message:"Lets Try"
-//     };
-//     dialogConfig.minWidth = 400;
-
-//     const dialogRef = this.dialog.open(DialogTemplateComponent, dialogConfig);
-
-//     dialogRef.afterClosed().subscribe(result => {
-//       if(result){
-//         resolve(result)
-//       }
-        
-//     });
-  
-//   })
+  /**
+   * alldata
+   */
+//   public alldata = (): Observable<any> => {
+//     return this.employee.queryAll(this.gridState);
 // }
 }

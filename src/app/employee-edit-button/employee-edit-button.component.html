@@ -14,6 +14,10 @@
 (save)="saveHandler($event)" (remove)="removeHandler($event)"
 [navigable]="true"
 >
+<ng-template kendoGridToolbarTemplate>
+    <button type= "button"kendoGridPDFCommand icon="file-pdf">Export to PDF</button>
+  </ng-template>
+  
 <kendo-grid-column field = "id" title="ID"  [editable]="false"></kendo-grid-column>
 <kendo-grid-column field = "employee_name" title="Name"></kendo-grid-column>
 <kendo-grid-column field = "employee_salary" title="Salary"  [editable]="false"></kendo-grid-column>
@@ -26,7 +30,9 @@
         <button kendoGridCancelCommand>{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
     </ng-template>
 </kendo-grid-command-column>
-
+<kendo-grid-pdf fileName="Products.pdf" [allPages]="true">
+    <kendo-grid-pdf-margin top="1cm" left="1cm" right="1cm" bottom="1cm"></kendo-grid-pdf-margin>
+</kendo-grid-pdf>
 </kendo-grid>
 <div *ngIf="loading" class="k-i-loading"></div>
 
